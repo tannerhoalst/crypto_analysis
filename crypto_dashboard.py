@@ -1,21 +1,15 @@
-# stock_percentage_change_dashboard.py
-
 import dash
 from dash import dcc, html
 import pandas as pd
 import plotly.graph_objs as go
 
-# Load the data
 stock1 = pd.read_csv('jeo_boden_market_chart_data.csv')
 
-# Convert Timestamp column to datetime
 stock1['Timestamp'] = pd.to_datetime(stock1['Timestamp'])
 
-# Calculate percentage change from the first data point
 first_price = stock1['Price (USD)'].iloc[0]
 stock1['Pct_Change'] = ((stock1['Price (USD)'] - first_price) / first_price) * 100
 
-# Initialize the Dash app
 app = dash.Dash(__name__)
 
 app.layout = html.Div([
