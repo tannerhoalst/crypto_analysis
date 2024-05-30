@@ -5,7 +5,7 @@ import time
 
 def get_historical_data(address, adress_type, candle_time, start_time, end_time):
     url = "https://public-api.birdeye.so/defi/history_price?address={address}&address_type={adress_type}&type={candle_time}&time_from={start_time}&time_to={end_time}"
-    headers = {"X-API-KEY": "2c0913d16c774a349f925f6d4d372204"}
+    headers = {"X-API-KEY": "[REMOVED]"}
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
         data = response.json()
@@ -53,12 +53,11 @@ def fetch_and_save_data(pair_address, start_time, end_time, filename):
         if len(records) >= 800:
             save_to_csv(records, filename)
             records = []
-            time.sleep(60)  # Wait to ensure we don't exceed 800 requests per minute
+            time.sleep(60) 
 
     if records:
         save_to_csv(records, filename)
 
-# Example usage
 sol_usdc_pair_address = "SOL_USDC_PAIR_ADDRESS"
 start_time = int(datetime(2023, 1, 1).timestamp())
 end_time = int(datetime(2023, 1, 2).timestamp())
